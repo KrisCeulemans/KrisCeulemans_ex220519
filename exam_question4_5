@@ -1,0 +1,24 @@
+Question 4: 
+select t1.gene_name, (t1.seq_region_end - t1.seq_region_start + 1) as length from gene t1 order by length asc limit 1;
+# gene_name, length
+'TRDD1', '8'
+
+
+Question 5:
+select t1.chromosome, count(t1.description) as cancercount from gene t1 where t1.description like "%cancer%"
+group by t1.chromosome order by cancercount desc limit 1 offset 1
+
+# chromosome, cancercount
+9, 5
+
+select count(t3.exon_id) as exoncount from gene t1 
+inner join transcript t2 on t1.gene_id = t2.gene_id
+inner join exon_transcript t3 on t2.transcript_id = t3.transcript_id
+where t1.chromosome = 9
+
+# exoncount
+'45679'
+
+
+
+
